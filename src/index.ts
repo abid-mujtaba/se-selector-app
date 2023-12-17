@@ -1,4 +1,6 @@
-console.log("Hello, World!");
+/*
+ * Entrypoint of Single-Page Application.
+ */
 
 import './styles/main.css';
 
@@ -11,7 +13,18 @@ function main(): void {
     left.setAttribute("id", "left");
     right.setAttribute("id", "right");
 
+    left.addEventListener("click", leftClickHandler);
+    right.addEventListener("click", rightClickHandler);
+
     app.append(left, right);
+}
+
+function rightClickHandler() {
+    console.log("Right element clicked.");
+}
+
+function leftClickHandler() {
+    console.log("Left element clicked.");
 }
 
 main()
