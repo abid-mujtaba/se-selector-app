@@ -1,4 +1,6 @@
 // Define this constant for easier usage
+// Source: https://viblo.asia/p/quick-webpack-set-up-for-single-page-applications-aWj53Xk8K6m
+// with customizations on top (including webpack v4 to v5 migration)
 const isProd = process.env.NODE_ENV === 'production'
 
 const { resolve } = require('path')
@@ -44,7 +46,10 @@ const config = {
     },
 
     plugins: [
-        new HtmlWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            title: 'SE Selector App',
+            template: resolve(__dirname, '..', 'src', 'html', 'index.ejs'),
+        }),
     ],
 }
 
