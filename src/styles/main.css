@@ -1,3 +1,22 @@
-h2 {
-    font-size: 200%;
+#app {
+    display: flex;
+    height: 97vh;
+    min-height: 97vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+#left, #right {
+    width: 50%;
+    height: 100%;
+    margin: 10px;
+}
+
+#left {
+    background-color: red;
+}
+
+#right {
+    background-color: green;
 }

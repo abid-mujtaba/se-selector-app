@@ -5,10 +5,13 @@ import './styles/main.css';
 function main(): void {
     const app = document.getElementById("app");
 
-    const header = document.createElement("h2");
-    header.append("Hello, World!")
+    const left = document.createElement("div");
+    const right = document.createElement("div");
 
-    app.append(header);
+    left.setAttribute("id", "left");
+    right.setAttribute("id", "right");
+
+    app.append(left, right);
 }
 
 main()
