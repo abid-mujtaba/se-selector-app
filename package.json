@@ -4,6 +4,8 @@
   "description": "Special Education Selector App",
   "main": "index.js",
   "scripts": {
+    "dev": "webpack-dev-server --hot --config config/base.config.js",
+    "build": "rimraf ./dist && NODE_ENV=production webpack --config config/base.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -29,6 +31,7 @@
     "babel-preset-env": "^1.7.0",
     "rimraf": "^5.0.5",
     "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   }
 }
