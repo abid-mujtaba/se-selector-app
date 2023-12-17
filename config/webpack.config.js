@@ -13,7 +13,7 @@ const config = {
 
     entry: {
         // Main entry point of our app
-        app: resolve(__dirname, '..', 'src', 'index.js'),
+        app: resolve(__dirname, '..', 'src', 'index.ts'),
     },
 
     output: {
@@ -28,7 +28,7 @@ const config = {
     },
 
     resolve: {
-        extensions: ['*', '.js'],
+        extensions: ['*', '.js', '.ts'],
         modules: [
             resolve(__dirname, '..', 'node_modules'),
         ],
@@ -37,8 +37,8 @@ const config = {
     module: {
         rules: [
             {
-              test: /\.js$/,
-              loader: 'babel-loader',
+              test: /\.ts$/,
+              use: 'ts-loader',
 
               // Dependencies do not require transpilation
               exclude: /node_modules/
