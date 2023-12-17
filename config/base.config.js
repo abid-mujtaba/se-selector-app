@@ -5,6 +5,7 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const config = {
     // Include source maps in development files
@@ -44,10 +45,7 @@ const config = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader'}
-                ]
+                use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
             }
         ],
     },
@@ -57,6 +55,7 @@ const config = {
             title: 'SE Selector App',
             template: resolve(__dirname, '..', 'src', 'html', 'index.ejs'),
         }),
+        new MiniCssExtractPlugin()
     ],
 }
 
