@@ -46,6 +46,13 @@ const config = {
             {
                 test: /\.css$/,
                 use: [ MiniCssExtractPlugin.loader, 'css-loader' ]
+            },
+            {
+                test: /\.ogg$/,
+                loader: 'file-loader',
+                options: {
+                    name: '/media/audio/[name].[ext]'
+                }
             }
         ],
     },

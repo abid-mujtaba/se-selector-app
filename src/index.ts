@@ -3,6 +3,7 @@
  */
 
 import './styles/main.css';
+import './media/audio/prompt-red-box.ogg';
 
 function main(): void {
     const app = document.getElementById("app");
