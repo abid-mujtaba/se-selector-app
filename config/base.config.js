@@ -2,6 +2,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 const { resolve } = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const config = {
     // Include source maps in development files
@@ -42,7 +43,9 @@ const config = {
         ],
     },
 
-    plugins: [],
+    plugins: [
+        new HtmlWebpackPlugin(),
+    ],
 }
 
 if (!isProd) {
