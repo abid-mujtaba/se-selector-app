@@ -1,0 +1,26 @@
+{
+  "name": "se-selector-app",
+  "version": "0.1.0",
+  "description": "Special Education Selector App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/abid-mujtaba/se-selector-app.git"
+  },
+  "keywords": [
+    "special-education",
+    "typescript",
+    "webapp",
+    "spa",
+    "webpack"
+  ],
+  "author": "Abid H. Mujtaba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abid-mujtaba/se-selector-app/issues"
+  },
+  "homepage": "https://github.com/abid-mujtaba/se-selector-app#readme"
+}
