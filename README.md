@@ -6,6 +6,16 @@ It is intended for Special Education (for children with Special Needs).
 It will present the child with a pair of objects to select from and
 provide appropriate feedback in the form of audio clips.
 
+## Tablet Configuration
+
+To prevent the top drop-down menu (which children can trigger easily) and
+which covers the app you can enable "Screen Pinning".
+This will "pin" the app to the screen,
+and disable the drop-down menu as well as the bottom row buttons.
+
+Apps are unpinned (at least on the Amazon Fire HD) by pressing
+the back and app-switcher button simultaneously.
+
 ## Local Development
 
 ### Setup
