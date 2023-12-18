@@ -26,6 +26,16 @@ function rightClickHandler() {
 
 function leftClickHandler() {
     console.log("Left element clicked.");
+
+    playAudio("./media/audio/prompt-red-box.ogg");
+}
+
+function playAudio(url: string): void {
+    const audio = new Audio(url);
+
+    audio.addEventListener("canplaythrough", (event) => {
+        audio.play();
+    });
 }
 
 main()
