@@ -4,6 +4,8 @@
 
 import './styles/main.css';
 import './media/audio/prompt-red-box.ogg';
+import './media/audio/correct.ogg';
+import './media/audio/wrong.ogg';
 
 function main(): void {
     const app = document.getElementById("app");
@@ -22,20 +24,28 @@ function main(): void {
 
 function rightClickHandler() {
     console.log("Right element clicked.");
+
+    const audio = playAudio("./media/audio/wrong.ogg");
+
+    audio.addEventListener("ended", (event) => {
+        playAudio("./media/audio/prompt-red-box.ogg");
+    });
 }
 
 function leftClickHandler() {
     console.log("Left element clicked.");
 
-    playAudio("./media/audio/prompt-red-box.ogg");
+    playAudio("./media/audio/correct.ogg");
 }
 
-function playAudio(url: string): void {
+function playAudio(url: string): HTMLAudioElement {
     const audio = new Audio(url);
 
     audio.addEventListener("canplaythrough", (event) => {
         audio.play();
     });
+
+    return audio;
 }
 
 main()
