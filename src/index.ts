@@ -21,6 +21,12 @@ function main(): void {
     app.append(left, right);
 }
 
+async function sleep(ms: number): Promise<void> {
+   return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+   });
+}
+
 function appInitialClickHandler() {
     const left = document.getElementById("left");
     const right = document.getElementById("right");
@@ -40,7 +46,8 @@ function rightClickHandler() {
 
     const audio = playAudio("./media/audio/wrong.ogg");
 
-    audio.addEventListener("ended", (event) => {
+    audio.addEventListener("ended", async (event) => {
+        await sleep(1000);
         playAudio("./media/audio/prompt-red-box.ogg");
     });
 }
