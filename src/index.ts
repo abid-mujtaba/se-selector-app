@@ -27,7 +27,7 @@ async function sleep(ms: number): Promise<void> {
    });
 }
 
-function appInitialClickHandler() {
+async function appInitialClickHandler() {
     const left = document.getElementById("left");
     const right = document.getElementById("right");
 
@@ -38,34 +38,35 @@ function appInitialClickHandler() {
     const app = document.getElementById("app");
     app.removeEventListener("click", appInitialClickHandler);
 
-    playAudio("./media/audio/prompt-red-box.ogg");
+    await playAudio("./media/audio/prompt-red-box.ogg");
 }
 
-function rightClickHandler() {
+async function rightClickHandler() {
     console.log("Right element clicked.");
 
-    const audio = playAudio("./media/audio/wrong.ogg");
-
-    audio.addEventListener("ended", async (event) => {
-        await sleep(1000);
-        playAudio("./media/audio/prompt-red-box.ogg");
-    });
+    await playAudio("./media/audio/wrong.ogg");
+    await sleep(1000);
+    await playAudio("./media/audio/prompt-red-box.ogg");
 }
 
-function leftClickHandler() {
+async function leftClickHandler() {
     console.log("Left element clicked.");
 
-    playAudio("./media/audio/correct.ogg");
+    await playAudio("./media/audio/correct.ogg");
 }
 
-function playAudio(url: string): HTMLAudioElement {
+async function playAudio(url: string): Promise<HTMLAudioElement> {
     const audio = new Audio(url);
 
     audio.addEventListener("canplaythrough", (event) => {
         audio.play();
     });
 
-    return audio;
+    return new Promise<HTMLAudioElement>((resolve) => {
+        audio.addEventListener("ended", (event) => {
+            return resolve(audio);
+        });
+    });
 }
 
 main()
