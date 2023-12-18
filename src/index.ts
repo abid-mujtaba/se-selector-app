@@ -7,6 +7,11 @@ import './media/audio/prompt-red-box.ogg';
 import './media/audio/correct.ogg';
 import './media/audio/wrong.ogg';
 
+// Flag for stopping audios from running over each other
+// If an audio is playing, trying to play another one will be a no-op
+let fAudioRunning = false;
+
+
 function main(): void {
     const app = document.getElementById("app");
 
@@ -56,17 +61,26 @@ async function leftClickHandler() {
 }
 
 async function playAudio(url: string): Promise<HTMLAudioElement> {
-    const audio = new Audio(url);
+    if (! fAudioRunning) {
+        fAudioRunning = true;
 
-    audio.addEventListener("canplaythrough", (event) => {
-        audio.play();
-    });
+        const audio = new Audio(url);
 
-    return new Promise<HTMLAudioElement>((resolve) => {
-        audio.addEventListener("ended", (event) => {
-            return resolve(audio);
+        audio.addEventListener("canplaythrough", (event) => {
+            audio.play();
         });
-    });
+
+        return new Promise<HTMLAudioElement>((resolve) => {
+            audio.addEventListener("ended", (event) => {
+                fAudioRunning = false;
+
+                return resolve(audio);
+            });
+        });
+    }
+    else {
+        console.log("Audio is already playing. Skipping: %s", url);
+    }
 }
 
 main()
