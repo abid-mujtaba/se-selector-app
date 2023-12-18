@@ -10,16 +10,29 @@ import './media/audio/wrong.ogg';
 function main(): void {
     const app = document.getElementById("app");
 
+    app.addEventListener("click", appInitialClickHandler);
+
     const left = document.createElement("div");
     const right = document.createElement("div");
 
     left.setAttribute("id", "left");
     right.setAttribute("id", "right");
 
+    app.append(left, right);
+}
+
+function appInitialClickHandler() {
+    const left = document.getElementById("left");
+    const right = document.getElementById("right");
+
     left.addEventListener("click", leftClickHandler);
     right.addEventListener("click", rightClickHandler);
 
-    app.append(left, right);
+    // This handler is supposed to run only once
+    const app = document.getElementById("app");
+    app.removeEventListener("click", appInitialClickHandler);
+
+    playAudio("./media/audio/prompt-red-box.ogg");
 }
 
 function rightClickHandler() {
