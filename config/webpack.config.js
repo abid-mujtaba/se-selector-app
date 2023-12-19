@@ -21,7 +21,7 @@ const config = {
         path: resolve(__dirname, '..', 'dist'),
 
         // In our case we serve assets directly from root
-        publicPath: '/',
+        publicPath: './',
 
         // We add hash to filename to avoid caching issues
         filename: '[name].[contenthash].js',
