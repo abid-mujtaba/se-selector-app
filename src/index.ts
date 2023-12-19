@@ -8,9 +8,12 @@ import './media/audio/correct.ogg';
 import './media/audio/wrong.ogg';
 
 import { playAudio } from './audio';
+import { configureLogging, log } from './logging';
 
 
 function main(): void {
+    configureLogging(window.location.href);
+
     const app = document.getElementById("app");
 
     app.addEventListener("click", appInitialClickHandler);
@@ -31,6 +34,8 @@ async function sleep(ms: number): Promise<void> {
 }
 
 async function appInitialClickHandler() {
+    log("SE selector app started");
+
     const left = document.getElementById("left");
     const right = document.getElementById("right");
 
@@ -45,7 +50,7 @@ async function appInitialClickHandler() {
 }
 
 async function rightClickHandler() {
-    console.log("Right element clicked.");
+    log("Right element clicked.");
 
     await playAudio("./media/audio/wrong.ogg");
     await sleep(1000);
@@ -53,7 +58,7 @@ async function rightClickHandler() {
 }
 
 async function leftClickHandler() {
-    console.log("Left element clicked.");
+    log("Left element clicked.");
 
     await playAudio("./media/audio/correct.ogg");
 }

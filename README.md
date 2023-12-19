@@ -16,6 +16,15 @@ and disable the drop-down menu as well as the bottom row buttons.
 Apps are unpinned (at least on the Amazon Fire HD) by pressing
 the back and app-switcher button simultaneously.
 
+## Log Server
+
+A HTTP Log Server is provided for development purposes.
+To launch it: `python3.12 utilities/http_log_server.py`.
+All logs from the app will be emitted by this server.
+
+To receive logs from the application look at
+the [Access over the LAN](#access-over-the-lan) section.
+
 ## Local Development
 
 ### Setup
@@ -72,3 +81,15 @@ launching a browser on the *host* and navigating to `http://192.168.164:5000`
 (note the `5000` in the address).
 
 The same URL should now work from other devices on the LAN.
+
+#### Configure HTTP Log Server Access
+
+In admin Powershell run:
+
+```sh
+netsh advfirewall firewall add rule name="Allowing LAN connections (HTTP Log Server)" dir=in action=allow protocol=TCP localport=5100
+netsh interface portproxy add v4tov4 listenaddress=0.0.0.0 listenport=5100 connectaddress=<wsl ip address> connectport=6000
+```
+
+where `5100` is the port opened in the host and
+`6000` is the local port of the HTTP Log Server running inside WSL.
