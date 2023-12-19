@@ -9,6 +9,7 @@ import './media/audio/wrong.ogg';
 
 import { playAudio } from './audio';
 import { configureLogging, log } from './logging';
+import { appTouchStartHandler, configureElementBounds, configureTouchHandlers, touchEnded } from './touch';
 
 
 function main(): void {
@@ -39,28 +40,33 @@ async function appInitialClickHandler() {
     const left = document.getElementById("left");
     const right = document.getElementById("right");
 
-    left.addEventListener("click", leftClickHandler);
-    right.addEventListener("click", rightClickHandler);
-
     // This handler is supposed to run only once
     const app = document.getElementById("app");
     app.removeEventListener("click", appInitialClickHandler);
 
+    configureElementBounds(left, right);
+    configureTouchHandlers(leftBoxClicked, rightBoxClicked);
+    app.ontouchstart = appTouchStartHandler;
+
     await playAudio("./media/audio/prompt-red-box.ogg");
 }
 
-async function rightClickHandler() {
+async function rightBoxClicked() {
     log("Right element clicked.");
 
     await playAudio("./media/audio/wrong.ogg");
     await sleep(1000);
     await playAudio("./media/audio/prompt-red-box.ogg");
+
+    touchEnded();
 }
 
-async function leftClickHandler() {
+async function leftBoxClicked() {
     log("Left element clicked.");
 
     await playAudio("./media/audio/correct.ogg");
+
+    touchEnded();
 }
 
 
